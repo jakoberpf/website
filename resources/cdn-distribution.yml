@@ -1,0 +1,80 @@
+Resources:
+
+  WebsiteBucketOriginAccessIdentity:
+      Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
+      Properties:
+          CloudFrontOriginAccessIdentityConfig:
+              Comment: Origin Access Identity to Access Website Bucket
+
+  # Cloudfront distro backed by Website Bucket
+  WebsiteDistribution:
+      Type: AWS::CloudFront::Distribution
+      Properties:
+          DistributionConfig:
+              Origins:
+                  # S3 origin for static content
+                  -   DomainName:
+                        Fn::GetAtt:
+                          - WebsiteBucket
+                          - DomainName
+                      Id: WebsiteBucketS3Origin
+                      S3OriginConfig:
+                        OriginAccessIdentity:
+                          Fn::Join:
+                            - /
+                            - - origin-access-identity
+                              - cloudfront
+                              - !Ref WebsiteBucketOriginAccessIdentity
+
+              Enabled: true
+              Comment: CDN for Website Bucket.
+              DefaultRootObject: index.html
+              HttpVersion: http2
+              ViewerCertificate:
+                AcmCertificateArn: ${self:custom.certificateArn}
+                SslSupportMethod: sni-only
+              Aliases:
+                - ${self:custom.domainName}
+              DefaultCacheBehavior:
+                  AllowedMethods:
+                      - DELETE
+                      - GET
+                      - HEAD
+                      - OPTIONS
+                      - PATCH
+                      - POST
+                      - PUT
+                  Compress: true
+                  TargetOriginId: WebsiteBucketS3Origin
+                  ForwardedValues:
+                      QueryString: false
+                      Cookies:
+                          Forward: none
+                  ViewerProtocolPolicy: redirect-to-https
+              PriceClass: PriceClass_100
+              # Since the Single Page App is taking care of the routing we need to make sure ever path is served with index.html
+              CustomErrorResponses:
+                - ErrorCachingMinTTL: 0
+                  ErrorCode: 403
+                  ResponseCode: 200
+                  ResponsePagePath: /index.html
+                - ErrorCachingMinTTL: 0
+                  ErrorCode: 404
+                  ResponseCode: 200
+                  ResponsePagePath: /index.html
+
+Outputs:
+
+  WebsiteDistributionId:
+    Value:
+      Ref: WebsiteDistribution
+    Export:
+      Name: Shared-WebsiteDistributionId
+
+  WebsiteDistributionDomainName:
+    Value:
+      Fn::GetAtt:
+        - WebsiteDistribution
+        - DomainName
+    Export:
+      Name: Shared-WebsiteDistributionDomainName

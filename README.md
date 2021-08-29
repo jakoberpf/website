@@ -220,21 +220,8 @@ We use GitHub Issues as the official bug tracker for the Notus NextJS. Here are 
 - Check our awesome builder <a href="https://www.creative-tim.com/builder/argon?ref=nnjs-readme" target="_blank">here</a>
 - Check Tailwind Starter Kit, the project behind this product <a href="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/presentation?ref=nnjs-readme" target="_blank">here</a>
 
-### Social Media
-
-Twitter: <a href="https://twitter.com/CreativeTim" target="_blank">https://twitter.com/CreativeTim</a>
-
-Facebook: <a href="https://www.facebook.com/CreativeTim" target="_blank">https://www.facebook.com/CreativeTim</a>
-
-Dribbble: <a href="https://dribbble.com/creativetim" target="_blank">https://dribbble.com/creativetim</a>
-
-Instagram: <a href="https://www.instagram.com/creativetimofficial/" target="_blank">https://www.instagram.com/creativetimofficial/</a>
-
-
-## Resources
-- Demo: <a href="https://demos.creative-tim.com/notus-nextjs/?ref=nnjs-readme" target="_blank">https://demos.creative-tim.com/notus-nextjs/?ref=nnjs-readme</a>
-- Download Page: <a href="https://www.creative-tim.com/product/notus-nextjs?ref=nnjs-github-readme" target="_blank">https://www.creative-tim.com/product/notus-nextjs</a>
-- Documentation: <a href="https://www.creative-tim.com/learning-lab/tailwind/nextjs/overview/notus?ref=nnjs-readme" target="_blank">https://www.creative-tim.com/learning-lab/tailwind/nextjs/overview/notus?ref=nnjs-readme</a>
-- License Agreement: <a href="https://www.creative-tim.com/license?ref=nnjs-readme" target="_blank">https://www.creative-tim.com/license?ref=nnjs-readme</a>
-- Support: <a href="https://www.creative-tim.com/contact-us?ref=nnjs-readme" target="_blank">https://www.creative-tim.com/contact-us?ref=nnjs-readme</a>
-- Issues: <a href="https://github.com/creativetimofficial/notus-nextjs/issues" target="_blank">Github Issues Page</a>
+## Recreate
+Create a serverless project with the aws-nodejs template.
+```
+sls create --template aws-nodejs --path serverless-react
+```

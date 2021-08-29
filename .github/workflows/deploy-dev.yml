@@ -1,0 +1,32 @@
+name: Deploy on Develop
+on:
+  push:
+    branches:
+      - develop
+jobs:
+  deploy-dev:
+    runs-on: self-hosted
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+    - name: Create env file
+      run: |
+        cat > .env << EOF
+        AWS_ACCESS_KEY_ID=${{ secrets.DEV_AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY=${{ secrets.DEV_AWS_SECRET_ACCESS_KEY }}
+        AWS_DEFAULT_REGION=${{ secrets.DEV_AWS_DEFAULT_REGION }}
+        SLS_DOMAIN_NAME=${{ secrets.DEV_SLS_DOMAIN_NAME }}
+        SLS_CERT_ARN=${{ secrets.DEV_SLS_CERT_ARN }}
+        EOF
+    - name: Install Yarn Package Manager
+      run: npm install -g yarn
+    - name: Install Serverless Framework
+      run: npm install -g serverless
+    - name: Install NPM dependencies
+      run: yarn install
+    - name: Build assets
+      run: yarn build
+    - name: Deploy
+      run: sls deploy --stage dev

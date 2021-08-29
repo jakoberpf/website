@@ -1,0 +1,53 @@
+Resources:
+
+  WebsiteBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: ${self:custom.bucketName}
+      # AccessControl: PublicRead # must be public because of website routing, is protected by custom header referer
+      # CorsConfiguration:
+      #     CorsRules:
+      #     -   AllowedHeaders: ['*']
+      #         AllowedMethods: ['PUT']
+      #         AllowedOrigins: ['*']
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: index.html
+
+  WebsiteBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+        Bucket: !Ref WebsiteBucket
+        PolicyDocument:
+            Statement:
+            # Read permission for CloudFront
+            -   Action: s3:GetObject
+                Effect: "Allow"
+                Resource:
+                  Fn::Join:
+                    - /
+                    - - Fn::GetAtt:
+                          - WebsiteBucket
+                          - Arn
+                      - '*'
+                Principal:
+                  CanonicalUser:
+                    Fn::GetAtt:
+                      - WebsiteBucketOriginAccessIdentity
+                      - S3CanonicalUserId
+
+Outputs:
+
+  WebsiteBucket:
+    Value:
+      Ref: WebsiteBucket
+    Export:
+      Name: Shared-WebsiteBucket
+
+  WebsiteBucketArn:
+    Value:
+      Fn::GetAtt:
+        - WebsiteBucket
+        - Arn
+    Export:
+      Name: Shared-WebsiteBucketArn

@@ -1,28 +1,22 @@
-# Welcome to Serverless!
-#
-# This file is the main config file for your service.
-# It's very minimal at this point and uses default values.
-# You can always add more config options for more control.
-# We've included some commented out config examples here.
-# Just uncomment any of them to get that config option.
-#
-# For full config options, check the docs:
-#    docs.serverless.com
-#
-# Happy Coding!
-
-service: serverless-react
+service: website-jakoberpf
 # app and org for use with dashboard.serverless.com
-#app: your-app-name
-#org: your-org-name
+#app: jakoberpf
+#org: jakoberpf
+
+useDotenv: true
 
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
 frameworkVersion: '2'
 
+plugins:
+  - serverless-s3-sync
+
 provider:
   name: aws
-  runtime: nodejs12.x
+  runtime: nodejs14.x
+  region: eu-central-1
+  stage: ${opt:stage}
   lambdaHashingVersion: 20201221
 
 # you can overwrite defaults here
@@ -57,9 +51,20 @@ provider:
 #    - include-me.js
 #    - include-me-dir/**
 
-functions:
-  hello:
-    handler: handler.hello
+custom: 
+
+  bucketName: ${self:service}-${self:provider.region}-${self:provider.stage}-portal-app
+  domainName: ${env:SLS_DOMAIN_NAME}
+  certificateArn: ${env:SLS_CERT_ARN}
+
+
+  s3Sync:
+    - bucketName: ${self:custom.bucketName}
+      localDir: out/
+
+# functions:
+#   hello:
+#     handler: handler.hello
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
@@ -101,7 +106,12 @@ functions:
 #      variable2: value2
 
 # you can add CloudFormation resource templates here
-#resources:
+resources:
+  # S3
+  - ${file(resources/s3-bucket.yml)}
+  # Cloudfront Distribution
+  - ${file(resources/cdn-distribution.yml)}
+
 #  Resources:
 #    NewResource:
 #      Type: AWS::S3::Bucket
