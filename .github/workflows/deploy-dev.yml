@@ -30,3 +30,5 @@ jobs:
       run: yarn build
     - name: Deploy
       run: sls deploy --stage dev
+    # - name: Invalidate Cloudfront
+    #   run: sls export-env & aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_ID --paths "/*"

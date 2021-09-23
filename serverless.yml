@@ -11,6 +11,7 @@ frameworkVersion: '2'
 
 plugins:
   - serverless-s3-sync
+  - serverless-export-env
 
 provider:
   name: aws
@@ -40,8 +41,8 @@ provider:
 #            - "/*"
 
 # you can define service wide environment variables here
-#  environment:
-#    variable1: value1
+  environment:
+    CLOUDFRONT_ID: !Ref WebsiteDistribution
 
 # you can add packaging information here
 #package:
