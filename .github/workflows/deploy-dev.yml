@@ -16,7 +16,6 @@ jobs:
         cat > .env << EOF
         AWS_ACCESS_KEY_ID=${{ secrets.DEV_AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY=${{ secrets.DEV_AWS_SECRET_ACCESS_KEY }}
-        AWS_DEFAULT_REGION=${{ secrets.DEV_AWS_DEFAULT_REGION }}
         SLS_DOMAIN_NAME=${{ secrets.DEV_SLS_DOMAIN_NAME }}
         SLS_CERT_ARN=${{ secrets.DEV_SLS_CERT_ARN }}
         EOF
