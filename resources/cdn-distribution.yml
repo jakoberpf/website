@@ -63,6 +63,16 @@ Resources:
                   ResponseCode: 200
                   ResponsePagePath: /index.html
 
+#    WebsiteDistribution: # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-certificatemanager-certificate.html
+#        Type: AWS::CertificateManager::Certificate
+#            Properties:
+#              DomainName: ${self:custom.domainName}
+#              SubjectAlternativeNames:
+#                - www.${self:custom.domainName}
+#              Tags:
+#                - ${self:provider.stage}
+#              ValidationMethod: DNS
+
 Outputs:
 
   WebsiteDistributionId:
