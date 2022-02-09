@@ -5,13 +5,12 @@ service: website-jakoberpf
 
 useDotenv: true
 
-# You can pin your service to only deploy with a specific Serverless version
-# Check out our docs for more details
 frameworkVersion: '2'
 
 plugins:
   - serverless-s3-sync
   - serverless-export-env
+  - serverless-cloudflare-dns
 
 provider:
   name: aws
@@ -54,10 +53,9 @@ provider:
 
 custom: 
 
-  bucketName: ${self:service}-${self:provider.region}-${self:provider.stage}-portal-app
+  bucketName: ${self:service}-${self:provider.region}-${self:provider.stage}
   domainName: ${env:SLS_DOMAIN_NAME}
   certificateArn: ${env:SLS_CERT_ARN}
-
 
   s3Sync:
     - bucketName: ${self:custom.bucketName}
