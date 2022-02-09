@@ -30,11 +30,11 @@ Resources:
                           - WebsiteBucket
                           - Arn
                       - '*'
-                Principal: '*'
-#                  CanonicalUser:
-#                    Fn::GetAtt:
-#                      - WebsiteBucketOriginAccessIdentity
-#                      - S3CanonicalUserId
+                Principal:
+                  CanonicalUser:
+                    Fn::GetAtt:
+                      - WebsiteBucketOriginAccessIdentity
+                      - S3CanonicalUserId
 
 Outputs:
 
