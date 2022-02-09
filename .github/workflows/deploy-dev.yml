@@ -18,6 +18,7 @@ jobs:
         AWS_SECRET_ACCESS_KEY=${{ secrets.DEV_AWS_SECRET_ACCESS_KEY }}
         SLS_DOMAIN_NAME=${{ secrets.DEV_SLS_DOMAIN_NAME }}
         SLS_CERT_ARN=${{ secrets.DEV_SLS_CERT_ARN }}
+        CLF_TOKEN=${{ secrets.$DEV_CLF_TOKEN }}
         EOF
     - name: Install Yarn Package Manager
       run: npm install -g yarn
@@ -29,5 +30,3 @@ jobs:
       run: yarn build
     - name: Deploy
       run: sls deploy --stage dev
-    # - name: Invalidate Cloudfront
-    #   run: sls export-env & aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_ID --paths "/*"
