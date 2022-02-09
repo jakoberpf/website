@@ -30,8 +30,7 @@ Resources:
                           - WebsiteBucket
                           - Arn
                       - '*'
-                Principal:
-                  - '*'
+                Principal: '*'
 #                  CanonicalUser:
 #                    Fn::GetAtt:
 #                      - WebsiteBucketOriginAccessIdentity
