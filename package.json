@@ -16,6 +16,7 @@
         "react": "17.0.1",
         "react-dom": "17.0.1",
         "react-scripts": "4.0.3",
+        "serverless-cloudflare-dns": "^0.4.9",
         "tailwindcss": "2.0.4"
     },
     "scripts": {
@@ -46,6 +47,7 @@
     "devDependencies": {
         "autoprefixer": "10.2.5",
         "postcss": "8.2.8",
+        "serverless-export-env": "arabold/serverless-export-env",
         "serverless-s3-sync": "^1.17.1"
     }
 }

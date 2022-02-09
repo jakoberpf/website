@@ -14,9 +14,9 @@ export default function Index() {
           <div className="w-full md:w-8/12 lg:w-6/12 xl:w-6/12 px-4">
             <div className="pt-32 sm:pt-0">
               <h2 className="font-semibold text-4xl text-blueGray-600">
-                Notus NextJS - A beautiful extension for Tailwind CSS.
+                Jakob Erpf - Work in progress.
               </h2>
-              <p className="mt-4 text-lg leading-relaxed text-blueGray-500">
+              {/*<p className="mt-4 text-lg leading-relaxed text-blueGray-500">
                 Notus NextJS is Free and Open Source. It does not change any of
                 the CSS from{" "}
                 <a
@@ -45,7 +45,7 @@ export default function Index() {
                 >
                   Github Star
                 </a>
-              </div>
+              </div>*/}
             </div>
           </div>
         </div>
@@ -56,7 +56,7 @@ export default function Index() {
         />
       </section>
 
-      <section className="mt-48 md:mt-40 pb-40 relative bg-blueGray-100">
+      {/*<section className="mt-48 md:mt-40 pb-40 relative bg-blueGray-100">
         <div
           className="-mt-20 top-0 bottom-auto left-0 right-0 w-full absolute h-20"
           style={{ transform: "translateZ(0)" }}
@@ -502,9 +502,9 @@ export default function Index() {
             </p>
           </div>
         </div>
-      </section>
+      </section>*/}
 
-      <section className="block relative z-1 bg-blueGray-600">
+     {/* <section className="block relative z-1 bg-blueGray-600">
         <div className="container mx-auto">
           <div className="justify-center flex flex-wrap">
             <div className="w-full lg:w-12/12 px-4  -mt-24">
@@ -557,9 +557,9 @@ export default function Index() {
             </div>
           </div>
         </div>
-      </section>
+      </section>*/}
 
-      <section className="py-20 bg-blueGray-600 overflow-hidden">
+     {/* <section className="py-20 bg-blueGray-600 overflow-hidden">
         <div className="container mx-auto pb-64">
           <div className="flex flex-wrap justify-center">
             <div className="w-full md:w-5/12 px-12 md:px-4 ml-auto mr-auto md:mt-64">
@@ -600,9 +600,9 @@ export default function Index() {
             </div>
           </div>
         </div>
-      </section>
+      </section>*/}
 
-      <section className="pb-16 bg-blueGray-200 relative pt-32">
+      {/*<section className="pb-16 bg-blueGray-200 relative pt-32">
         <div
           className="-mt-20 top-0 bottom-auto left-0 right-0 w-full absolute h-20"
           style={{ transform: "translateZ(0)" }}
@@ -660,7 +660,7 @@ export default function Index() {
             </div>
           </div>
         </div>
-      </section>
+      </section>*/}
       <Footer />
     </>
   );
