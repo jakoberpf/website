@@ -14,10 +14,11 @@ jobs:
     - name: Create env file
       run: |
         cat > .env << EOF
-        AWS_ACCESS_KEY_ID=${{ secret.LIVE_AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY=${{ secret.LIVE_AWS_SECRET_ACCESS_KEY }}
-        SLS_DOMAIN_NAME=${{ secret.LIVE_SLS_DOMAIN_NAME }}
-        SLS_CERT_ARN=${{ secret.LIVE_SLS_CERT_ARN }}
+        AWS_ACCESS_KEY_ID=${{ secrets.LIVE_AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY=${{ secrets.LIVE_AWS_SECRET_ACCESS_KEY }}
+        SLS_DOMAIN_NAME=${{ secrets.LIVE_SLS_DOMAIN_NAME }}
+        SLS_CERT_ARN=${{ secrets.LIVE_SLS_CERT_ARN }}
+        CLF_TOKEN=${{ secrets.$LIVE_CLF_TOKEN }}
         EOF
     - name: Install Yarn Package Manager
       run: npm install -g yarn
