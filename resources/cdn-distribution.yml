@@ -69,7 +69,7 @@ Outputs:
     Value:
       Ref: WebsiteDistribution
     Export:
-      Name: Shared-WebsiteDistributionId
+      Name: Shared-WebsiteDistributionId-${self:provider.stage}
 
   WebsiteDistributionDomainName:
     Value:
@@ -77,4 +77,4 @@ Outputs:
         - WebsiteDistribution
         - DomainName
     Export:
-      Name: Shared-WebsiteDistributionDomainName
+      Name: Shared-WebsiteDistributionDomainName-${self:provider.stage}

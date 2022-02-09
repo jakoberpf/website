@@ -42,7 +42,7 @@ Outputs:
     Value:
       Ref: WebsiteBucket
     Export:
-      Name: Shared-WebsiteBucket
+      Name: Shared-WebsiteBucket-${self:provider.stage}
 
   WebsiteBucketArn:
     Value:
@@ -50,4 +50,4 @@ Outputs:
         - WebsiteBucket
         - Arn
     Export:
-      Name: Shared-WebsiteBucketArn
+      Name: Shared-WebsiteBucketArn-${self:provider.stage}
