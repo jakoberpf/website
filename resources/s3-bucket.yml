@@ -20,7 +20,6 @@ Resources:
         Bucket: !Ref WebsiteBucket
         PolicyDocument:
             Statement:
-            # Read permission for CloudFront
             -   Action: s3:GetObject
                 Effect: "Allow"
                 Resource:
@@ -31,10 +30,6 @@ Resources:
                           - Arn
                       - '*'
                 Principal: '*'
-#                  CanonicalUser:
-#                    Fn::GetAtt:
-#                      - WebsiteBucketOriginAccessIdentity
-#                      - S3CanonicalUserId
 
 Outputs:
 
