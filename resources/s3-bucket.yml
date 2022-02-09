@@ -14,23 +14,24 @@ Resources:
         IndexDocument: index.html
         ErrorDocument: index.html
 
-#  WebsiteBucketPolicy:
-#    Type: AWS::S3::BucketPolicy
-#    Properties:
-#        Bucket: !Ref WebsiteBucket
-#        PolicyDocument:
-#            Statement:
-#            # Read permission for CloudFront
-#            -   Action: s3:GetObject
-#                Effect: "Allow"
-#                Resource:
-#                  Fn::Join:
-#                    - /
-#                    - - Fn::GetAtt:
-#                          - WebsiteBucket
-#                          - Arn
-#                      - '*'
-#                Principal:
+  WebsiteBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+        Bucket: !Ref WebsiteBucket
+        PolicyDocument:
+            Statement:
+            # Read permission for CloudFront
+            -   Action: s3:GetObject
+                Effect: "Allow"
+                Resource:
+                  Fn::Join:
+                    - /
+                    - - Fn::GetAtt:
+                          - WebsiteBucket
+                          - Arn
+                      - '*'
+                Principal:
+                  - '*'
 #                  CanonicalUser:
 #                    Fn::GetAtt:
 #                      - WebsiteBucketOriginAccessIdentity
