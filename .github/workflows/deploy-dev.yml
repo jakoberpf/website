@@ -22,7 +22,7 @@ jobs:
     - name: Install Yarn Package Manager
       run: npm install -g yarn
     - name: Install Serverless Framework
-      run: npm install -g serverless
+      run: npm install -g serverless@2
     - name: Install NPM dependencies
       run: yarn install
     - name: Build assets
