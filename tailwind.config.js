@@ -2,13 +2,11 @@ const plugin = require("tailwindcss/plugin");
 const colors = require("tailwindcss/colors");
 
 module.exports = {
-  purge: {
-    enabled: true,
-    content: ["./**/*.html", "./*.html", "./**/*.js", "./*.js"],
-    options: {
-      safelist: [],
-    },
-  },
+  content: [
+    './components/**/*.{html,js}',
+    './pages/**/*.{html,js}',
+    './index.html',
+  ],
   theme: {
     colors: {
       ...colors,
@@ -88,7 +86,7 @@ module.exports = {
   ],
   plugins: [
     require("@tailwindcss/forms"),
-    // require("@tailwindcss/typography"),
+    require("@tailwindcss/typography"),
     plugin(function ({ addComponents, theme }) {
       const screens = theme("screens", {});
       addComponents([

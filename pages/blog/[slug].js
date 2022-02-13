@@ -7,8 +7,8 @@ export default function BlogTemplate(props) {
     // Render data from `getStaticProps`
     return (
         // <Layout siteTitle={props.siteTitle}>
+        //     <h1>{props.frontmatter.title}</h1>
             <article className="prose">
-                <h1>{props.frontmatter.title}</h1>
                 <div>
                     <ReactMarkdown children={props.markdownBody} />
                 </div>
