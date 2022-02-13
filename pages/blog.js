@@ -1,10 +1,9 @@
-/* eslint-disable react/jsx-no-target-blank */
 import React from "react";
-import Link from "next/link";
 
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Footer from "components/Footers/Footer.js";
 import BlogList from "../components/Blog/BlogList";
+import matter from "gray-matter";
 
 export default function Blog(props) {
   return (
@@ -27,7 +26,7 @@ export default function Blog(props) {
         />
       </section>
         <section>
-            <BlogList />
+            <BlogList allBlogs={props.allBlogs} />
         </section>
       <Footer />
     </>
@@ -35,33 +34,36 @@ export default function Blog(props) {
 }
 
 export async function getStaticProps() {
-    const configData = await import(`../content/config.json`)
+    const siteConfig = await import(`../content/config.json`)
+    //get posts & context from folder
+    const posts = (context => {
+        const keys = context.keys()
+        const values = keys.map(context)
+
+        const data = keys.map((key, index) => {
+            // Create slug from filename
+            const slug = key
+                .replace(/^.*[\\\/]/, '')
+                .split('.')
+                .slice(0, -1)
+                .join('.')
+            const value = values[index]
+            // Parse yaml metadata & markdownbody in document
+            const document = matter(value.default)
+            return {
+                frontmatter: document.data,
+                markdownBody: document.content,
+                slug,
+            }
+        })
+        return data
+    })(require.context('../content', true, /\.md$/))
+
     return {
         props: {
-            title: configData.title,
-            description: configData.description,
+            allBlogs: posts,
+            title: siteConfig.default.title,
+            description: siteConfig.default.description,
         },
     }
 }
-
-// export async function getStaticPaths() {
-//     //get all .md files in the posts dir
-//     const blogs = glob.sync('posts/**/*.md')
-//
-//     //remove path and extension to leave filename only
-//     const blogSlugs = blogs.map(file =>
-//         file
-//             .split('/')[1]
-//             .replace(/ /g, '-')
-//             .slice(0, -3)
-//             .trim()
-//     )
-//
-//     // create paths with `slug` param
-//     const paths = blogSlugs.map(slug => `/blog/${slug}`)
-//
-//     return {
-//         paths,
-//         fallback: false,
-//     }
-// }
