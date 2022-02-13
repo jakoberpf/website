@@ -19,13 +19,21 @@ export default function Navbar(props) {
                 Jakob Erpf
               </a>
             </Link>
-            <button
-              className="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
-              type="button"
-              onClick={() => setNavbarOpen(!navbarOpen)}
-            >
-              <i className="fas fa-bars"/>
-            </button>
+            <Link href="/blog">
+              <a
+                  className="text-blueGray-700 text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
+                  href="#blog"
+              >
+                Blog
+              </a>
+            </Link>
+            {/*<button*/}
+            {/*  className="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"*/}
+            {/*  type="button"*/}
+            {/*  onClick={() => setNavbarOpen(!navbarOpen)}*/}
+            {/*>*/}
+            {/*  <i className="fas fa-bars"/>*/}
+            {/*</button>*/}
           </div>
           <div
             className={
@@ -35,9 +43,9 @@ export default function Navbar(props) {
             id="example-navbar-warning"
           >
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
-              <li className="flex items-center">
-                {/*<IndexDropdown />*/}
-              </li>
+              {/*<li className="flex items-center">*/}
+              {/*  <IndexDropdown />*/}
+              {/*</li>*/}
 
               <li className="flex items-center">
                 <a
